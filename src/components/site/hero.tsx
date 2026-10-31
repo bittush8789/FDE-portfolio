@@ -92,7 +92,7 @@ export function Hero() {
         >
           <span className="w-2 h-2 rounded-full flex-none bg-[var(--brand-live)] shadow-[0_0_0_4px_var(--brand-live-soft)] animate-pulse-dot" />
           <span className="text-primary whitespace-nowrap flex-none">bittu@ai:~$</span>
-          <span className="whitespace-pre flex-shrink min-w-0">{typed}</span>
+          <span className="whitespace-pre-wrap break-words flex-shrink min-w-0">{typed}</span>
           <span className="inline-block w-[9px] h-[1.1em] bg-primary ml-0.5 align-middle animate-blink flex-none" />
         </div>
 

@@ -158,15 +158,17 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
   body {
     @apply bg-background text-foreground;
     background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
     background-size: 28px 28px;
     transition: background-color 0.25s ease, color 0.25s ease;
-  }
-  html {
-    @apply font-sans;
-    scroll-behavior: smooth;
+    overflow-x: clip;
   }
   ::selection {
     background: var(--accent);

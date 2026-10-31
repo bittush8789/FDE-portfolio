@@ -4,7 +4,7 @@ import { Reveal } from "./reveal";
 export function JobMarketTeaser() {
   return (
     <section id="job-market" className="py-24 max-md:py-16">
-      <div className="max-w-[1100px] mx-auto px-8 max-md:px-5">
+      <div className="max-w-[1100px] mx-auto px-5 sm:px-8 max-md:px-5">
         <div className="font-mono text-[0.78rem] tracking-[0.14em] uppercase text-primary flex items-center gap-2.5 mb-4">
           <span className="w-[7px] h-[7px] rounded-full bg-primary shadow-[0_0_0_4px_var(--brand-accent-soft)]" />
           Job market

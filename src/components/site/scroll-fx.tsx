@@ -56,7 +56,7 @@ export function ScrollFx() {
           window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })
         }
         className={cn(
-          "fixed right-7 bottom-7 max-md:right-[18px] max-md:bottom-[18px] z-[180] w-[46px] h-[46px] max-md:w-[42px] max-md:h-[42px] rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-[0_8px_24px_-8px_rgba(232,98,42,0.5)] transition-all duration-300 hover:bg-[#ff7238]",
+          "fixed right-7 bottom-7 max-md:right-[18px] max-md:bottom-[88px] z-[180] w-[46px] h-[46px] max-md:w-[42px] max-md:h-[42px] rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-[0_8px_24px_-8px_rgba(232,98,42,0.5)] transition-all duration-300 hover:bg-[#ff7238]",
           topVisible
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 translate-y-3 pointer-events-none"

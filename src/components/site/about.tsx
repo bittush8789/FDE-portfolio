@@ -35,18 +35,20 @@ export function About() {
         </div>
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
           <Reveal className="space-y-5">
-            {/* Profile photo — local copy so it is cached with the rest of the assets */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={PHOTO}
-              alt="Bittu Sharma"
-              className="w-32 h-32 rounded-full object-cover border border-[var(--veil-4)] bg-[var(--brand-bg-raised)] mx-auto md:mx-0"
-            />
-            <p className="text-[clamp(1.1rem,2.8vw,1.35rem)] leading-[1.55] font-medium text-foreground">
-              I&apos;m a <span className="text-primary">DevOps Engineer</span> with professional experience at{" "}
-              <strong className="text-foreground font-semibold">EXL Service</strong> and hands-on experience in{" "}
-              <span className="text-primary">Forward Deployed Engineering</span> through end-to-end AI projects.
-            </p>
+            {/* Profile photo + intro text */}
+            <div className="flex flex-col lg:flex-row lg:items-start items-center gap-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={PHOTO}
+                alt="Bittu Sharma"
+                className="w-32 h-32 rounded-full object-cover border border-[var(--veil-4)] bg-[var(--brand-bg-raised)] shrink-0"
+              />
+              <p className="text-[clamp(1.1rem,2.8vw,1.35rem)] leading-[1.55] font-medium text-foreground">
+                I&apos;m a <span className="text-primary">DevOps Engineer</span> with professional experience at{" "}
+                <strong className="text-foreground font-semibold">EXL Service</strong> and hands-on experience in{" "}
+                <span className="text-primary">Forward Deployed Engineering</span> through end-to-end AI projects.
+              </p>
+            </div>
             <p className="text-[var(--brand-text-dim)] text-[0.96rem] sm:text-[1rem] leading-[1.65]">
               I work at the intersection of business and technology, translating complex business requirements into
               practical AI solutions. My focus includes{" "}

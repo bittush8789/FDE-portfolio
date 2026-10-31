@@ -14,7 +14,12 @@ export function ScrollFx() {
   const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
-    setReduceMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const raf = requestAnimationFrame(() => setReduceMotion(mq.matches));
+    function onChange() {
+      setReduceMotion(mq.matches);
+    }
+    mq.addEventListener("change", onChange);
 
     function onScroll() {
       const y = window.scrollY;
@@ -23,7 +28,11 @@ export function ScrollFx() {
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      mq.removeEventListener("change", onChange);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (

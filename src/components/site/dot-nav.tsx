@@ -8,6 +8,7 @@ const SECTIONS = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
+  { id: "certificates", label: "Certificates" },
   { id: "ai-pulse", label: "AI Pulse" },
   { id: "contact", label: "Contact" },
 ];
@@ -60,7 +61,7 @@ export function DotNav() {
             />
             <span
               className={cn(
-                "absolute right-6 top-1/2 -translate-y-1/2 translate-x-1.5 whitespace-nowrap font-mono text-[0.68rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded border pointer-events-none transition-all duration-150",
+                "hidden 2xl:block absolute right-6 top-1/2 -translate-y-1/2 translate-x-1.5 whitespace-nowrap font-mono text-[0.68rem] tracking-[0.1em] uppercase px-2 py-0.5 rounded border pointer-events-none transition-all duration-150",
                 active
                   ? "opacity-100 translate-x-0 text-foreground bg-[var(--brand-bg-raised)] border-[var(--brand-accent-dim)]"
                   : "opacity-0 text-[var(--brand-text-dim)] bg-[var(--brand-bg-raised)] border-[var(--veil-4)] group-hover:opacity-100 group-hover:translate-x-0"

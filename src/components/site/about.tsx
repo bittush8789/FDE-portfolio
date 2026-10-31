@@ -55,11 +55,11 @@ export function About() {
               <span className="text-foreground font-medium">AWS</span>,{" "}
               <span className="text-foreground font-medium">Kubernetes</span>, and AI observability, from solution design to deployment.
             </p>
-            <Reveal>
+            <div>
               <a
                 href="/resume.pdf"
                 download
-                className="inline-flex items-center gap-2 self-start font-mono text-[0.76rem] tracking-[0.1em] uppercase text-[var(--brand-text-dim)] border border-[var(--veil-4)] rounded-lg px-4 py-2.5 transition-colors hover:text-primary hover:border-[var(--brand-accent-dim)]"
+                className="inline-flex items-center gap-2 font-mono text-[0.76rem] tracking-[0.1em] uppercase text-[var(--brand-text-dim)] border border-[var(--veil-4)] rounded-lg px-4 py-2.5 transition-colors hover:text-primary hover:border-[var(--brand-accent-dim)]"
               >
                 <svg
                   className="w-3.5 h-3.5"
@@ -77,7 +77,7 @@ export function About() {
                 </svg>
                 Download Résumé
               </a>
-            </Reveal>
+            </div>
           </Reveal>
           <Reveal className="flex flex-col gap-5 max-md:gap-4">
             {FACTS.map((fact, i) => (

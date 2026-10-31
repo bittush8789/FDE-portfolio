@@ -38,6 +38,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${dmSans.variable} ${dmMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground" suppressHydrationWarning>
+        {/* Start the Spline scene download in parallel with the JS bundle instead
+            of waiting for hydration + the lazy runtime chunk. React hoists this
+            into <head>. */}
+        <link rel="preload" href="/scene/robot.splinecode" as="fetch" crossOrigin="anonymous" />
         <script suppressHydrationWarning dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         {children}
       </body>

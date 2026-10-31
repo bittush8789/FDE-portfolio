@@ -3,6 +3,7 @@ import { SKILL_GROUPS as GROUPS } from "@/lib/profile";
 import {
   Briefcase,
   Bot,
+  ShieldCheck,
   Boxes,
   Cloud,
   Code2,
@@ -11,6 +12,7 @@ import {
 const GROUP_ICONS = [
   Briefcase,
   Bot,
+  ShieldCheck,
   Boxes,
   Cloud,
   Code2,
@@ -39,27 +41,17 @@ export function Skills() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-5">
           {GROUPS.map((group, idx) => {
             const Icon = GROUP_ICONS[idx % GROUP_ICONS.length];
-            const colSpan =
-              idx < 2
-                ? "md:col-span-1 lg:col-span-3"
-                : idx === 4
-                ? "md:col-span-2 lg:col-span-2"
-                : "md:col-span-1 lg:col-span-2";
+            const colSpan = "md:col-span-1 lg:col-span-2";
 
             return (
               <Reveal key={group.label} className={colSpan}>
                 <div className="h-full flex flex-col bg-[var(--brand-bg-raised)] border border-[var(--veil-4)] rounded-xl p-5 sm:p-6 transition-all duration-200 hover:border-[var(--brand-accent-dim)] hover:bg-[var(--brand-bg-raised-2)] hover:shadow-[0_12px_32px_-16px_rgba(232,98,42,0.22)]">
-                  <div className="flex items-center justify-between gap-3 mb-4 pb-3.5 border-b border-[var(--veil-4)]">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="w-8 h-8 rounded-lg bg-[var(--brand-accent-soft)] text-primary flex items-center justify-center flex-none">
-                        <Icon className="w-4 h-4" strokeWidth={2} />
-                      </div>
-                      <span className="font-mono text-[0.76rem] sm:text-[0.78rem] tracking-[0.08em] uppercase text-foreground font-semibold truncate">
-                        {group.label}
-                      </span>
+                  <div className="flex items-center gap-2.5 mb-4 pb-3.5 border-b border-[var(--veil-4)]">
+                    <div className="w-8 h-8 rounded-lg bg-[var(--brand-accent-soft)] text-primary flex items-center justify-center flex-none">
+                      <Icon className="w-4 h-4" strokeWidth={2} />
                     </div>
-                    <span className="font-mono text-[0.72rem] text-[var(--brand-text-faint)] flex-none">
-                      0{idx + 1}
+                    <span className="font-mono text-[0.72rem] sm:text-[0.78rem] tracking-[0.06em] uppercase text-foreground font-semibold leading-snug break-words">
+                      {group.label}
                     </span>
                   </div>
 

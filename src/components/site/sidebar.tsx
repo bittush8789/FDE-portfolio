@@ -1,5 +1,9 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { MailIcon, LinkedInIcon, GitHubIcon, HashnodeIcon } from "./icons";
 import { ThemeToggle } from "./theme-toggle";
+import { cn } from "@/lib/utils";
 
 const LINKS = [
   { href: "mailto:bittush9534@gmail.com", label: "Email", Icon: MailIcon, external: false },
@@ -9,17 +13,46 @@ const LINKS = [
 ];
 
 export function Sidebar() {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        // The dock only floats on small screens; on desktop it stays pinned.
+        if (window.innerWidth < 768) {
+          setHidden(y > lastY && y > 120);
+        } else {
+          setHidden(false);
+        }
+        lastY = y;
+        ticking = false;
+      });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <aside
       aria-label="Social links and theme settings"
-      className={[
+      aria-hidden={hidden || undefined}
+      className={cn(
         "fixed z-[190] flex items-center transition-all duration-300",
         // Mobile / Tablet portrait: sleek floating dock at bottom center
         "max-md:bottom-4 max-md:left-1/2 max-md:-translate-x-1/2 max-md:flex-row max-md:justify-center max-md:gap-3 max-md:px-4 max-md:py-2",
         "max-md:bg-[var(--scrim-1)] max-md:backdrop-blur-xl max-md:border max-md:border-[var(--veil-4)] max-md:rounded-full max-md:shadow-2xl",
+        // Slide the dock out of the way while scrolling down so it never sits on top of content
+        hidden && "max-md:translate-y-[150%] max-md:opacity-0 max-md:pointer-events-none",
         // Desktop / Laptop: vertical bar pinned to the right
-        "md:right-6 lg:right-7 md:top-1/2 md:-translate-y-1/2 md:flex-col md:bg-transparent md:backdrop-blur-none md:border-none md:p-0 md:rounded-none md:shadow-none",
-      ].join(" ")}
+        "md:right-6 lg:right-7 md:top-1/2 md:-translate-y-1/2 md:flex-col md:bg-transparent md:backdrop-blur-none md:border-none md:p-0 md:rounded-none md:shadow-none"
+      )}
     >
       <div className="hidden md:block w-px h-9 bg-[var(--brand-border-strong)] mb-1" />
       <ul className="flex items-center gap-3 md:gap-[22px] list-none m-0 p-0 md:flex-col">

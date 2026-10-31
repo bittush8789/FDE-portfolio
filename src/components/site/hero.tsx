@@ -11,6 +11,18 @@ const SPLINE_SCENE = "/scene/robot.splinecode";
 
 export function Hero() {
   const [typed, setTyped] = useState("");
+  const [showScene, setShowScene] = useState(false);
+
+  useEffect(() => {
+    // Fully unmount the 3D scene below `lg` rather than just CSS-hiding it —
+    // the Spline render loop keeps running against a zero-size canvas
+    // otherwise, spamming WebGPU errors and burning GPU on mobile.
+    const mql = window.matchMedia("(min-width: 1024px)");
+    const update = () => setShowScene(mql.matches);
+    update();
+    mql.addEventListener("change", update);
+    return () => mql.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -45,16 +57,15 @@ export function Hero() {
           "radial-gradient(ellipse 60% 50% at 15% 15%, rgba(232,98,42,.10), transparent 60%), radial-gradient(ellipse 50% 40% at 85% 85%, rgba(232,98,42,.05), transparent 60%)",
       }}
     >
-      {/* The scene mounts on mobile too now (it used to be unmounted below
-          `lg`, so phones never got the robot). Sized for the small viewports
-          via max-md so it never swallows the headline. */}
-      <div
-        aria-hidden="true"
-        className="absolute top-[12%] bottom-[10%] right-[4%] w-[36vw] max-w-[520px] max-md:left-0 max-md:right-0 max-md:w-[80%] max-md:max-w-[320px] opacity-0 animate-fade-up [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
-        style={{ animationDelay: "0.4s" }}
-      >
+      {showScene && (
+        <div
+          aria-hidden="true"
+          className="absolute top-[10%] bottom-[8%] right-[8%] w-[34vw] max-w-[520px] opacity-0 animate-fade-up [mask-image:linear-gradient(to_bottom,black_78%,transparent_100%)]"
+          style={{ animationDelay: "0.4s" }}
+        >
           <SplineScene scene={SPLINE_SCENE} className="w-full h-full" />
         </div>
+      )}
 
         <div className="relative z-10 max-w-[1100px] mx-auto px-5 sm:px-8 w-full">
           <div
